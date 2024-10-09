@@ -10,7 +10,7 @@ export default function Page() {
     if (!navigation?.key) return;
 
     const redirectionInterval = setInterval(() => {
-      router.replace("/login");
+      router.replace("/register");
     }, 1000);
 
     return () => clearInterval(redirectionInterval);

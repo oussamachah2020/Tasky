@@ -7,11 +7,13 @@ import { z } from "zod";
 import { useState } from "react";
 
 const formSchema = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
   email: z.string().email(),
   password: z.string().min(1).max(16),
 });
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const { control, formState, handleSubmit } = useForm<
     z.infer<typeof formSchema>
   >({
@@ -35,7 +37,7 @@ export default function LoginScreen() {
   return (
     <View style={{ position: "relative" }}>
       <LinearGradient
-        colors={['#192f6a','#3b5998']}
+        colors={["#192f6a", "#3b5998"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={{ height: "100%" }}
@@ -60,9 +62,57 @@ export default function LoginScreen() {
               textAlign: "center",
             }}
           >
-            Sign In
+            Sign Up
           </Text>
           <View style={styles.form}>
+              <View style={styles.field}>
+                <Text>First Name</Text>
+                <Controller
+                  control={control}
+                  name="first_name"
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput
+                      placeholder="Enter your first name"
+                      mode="outlined"
+                      style={styles.input}
+                      outlineStyle={{
+                        borderRadius: 10,
+                        borderColor: "rgba(0,0,0,0.2)",
+                      }}
+                      onBlur={onBlur}
+                      onChangeText={(text) => onChange(text.toLowerCase())} // Converts to lowercase
+                      value={value}
+                    />
+                  )}
+                />
+                {errors?.email && (
+                  <Text style={{ color: "red" }}>{errors.email.message}</Text>
+                )}
+              </View>
+              <View style={styles.field}>
+                <Text>Last Name</Text>
+                <Controller
+                  control={control}
+                  name="last_name"
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput
+                      placeholder="Enter your last name"
+                      mode="outlined"
+                      style={styles.input}
+                      outlineStyle={{
+                        borderRadius: 10,
+                        borderColor: "rgba(0,0,0,0.2)",
+                      }}
+                      onBlur={onBlur}
+                      onChangeText={(text) => onChange(text.toLowerCase())}
+                      value={value}
+                    />
+                  )}
+                />
+                {errors?.email && (
+                  <Text style={{ color: "red" }}>{errors.first_name?.message}</Text>
+                )}
+              </View>
             <View style={styles.field}>
               <Text>E-mail</Text>
               <Controller
@@ -84,7 +134,7 @@ export default function LoginScreen() {
                 )}
               />
               {errors?.email && (
-                <Text style={{ color: 'red' }}>{errors.email.message}</Text>
+                <Text style={{ color: "red" }}>{errors.last_name?.message}</Text>
               )}
             </View>
 
@@ -116,7 +166,7 @@ export default function LoginScreen() {
                 )}
               />
               {errors?.password && (
-                <Text style={{ color: 'red' }}>{errors.password.message}</Text>
+                <Text style={{ color: "red" }}>{errors.password.message}</Text>
               )}
             </View>
 
@@ -125,8 +175,8 @@ export default function LoginScreen() {
               style={{
                 borderRadius: 10,
                 height: 52,
-                justifyContent: 'center',
-                backgroundColor: '#1E3B70',
+                justifyContent: "center",
+                backgroundColor: "#1E3B70",
                 marginTop: 10,
               }}
               disabled={!isValid || isSubmitting}
@@ -134,12 +184,12 @@ export default function LoginScreen() {
             >
               <Text
                 style={{
-                  fontWeight: '600',
-                  color: '#fff',
+                  fontWeight: "600",
+                  color: "#fff",
                   fontSize: 16,
                 }}
               >
-                Login
+                Register
               </Text>
             </Button>
           </View>
@@ -161,7 +211,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: "100%",
     marginTop: 40,
-    paddingTop: 40,
+    paddingTop: 30,
     paddingHorizontal: 10,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -172,9 +222,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   form: {
-    marginTop: 40,
+    marginTop: 30,
     marginHorizontal: 10,
-    gap:20,
+    gap: 20,
   },
   field: {
     gap: 10,
