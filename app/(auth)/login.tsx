@@ -1,10 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import Logo from "@/assets/images/light-logo.svg";
 import { Button, Text, TextInput } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
+import { Link } from "expo-router";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -38,7 +39,7 @@ export default function LoginScreen() {
         colors={['#192f6a','#3b5998']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        style={{ height: "100%" }}
+        style={{ height: "100%", paddingTop: Platform.OS === "android" ? 45 : 50, }}
       >
         <View style={{ zIndex: 1, marginHorizontal: 10 }}>
           <Logo />
@@ -143,6 +144,17 @@ export default function LoginScreen() {
               </Text>
             </Button>
           </View>
+          <Text style={{
+            textAlign: 'center',
+            marginTop: 30,
+            
+          }}>
+          Don't have an account ? {" "}
+          <Link href={"/register"} style={{
+            fontWeight: '600',
+            color: "#3b5998"
+          }}>Sign up</Link>
+          </Text>
         </View>
       </LinearGradient>
     </View>

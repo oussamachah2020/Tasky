@@ -1,6 +1,7 @@
+import Animation from "@/components/LottiePlater";
 import { router, usePathname, useRootNavigationState } from "expo-router";
 import { useEffect } from "react";
-import { Image, Platform, StyleSheet, Text, View } from "react-native";
+import {  Platform, StyleSheet, View } from "react-native";
 
 export default function Page() {
   const navigation = useRootNavigationState();
@@ -10,19 +11,15 @@ export default function Page() {
     if (!navigation?.key) return;
 
     const redirectionInterval = setInterval(() => {
-      router.replace("/register");
-    }, 1000);
+      router.replace("/(tabs)");
+    }, 5000);
 
     return () => clearInterval(redirectionInterval);
   }, [navigation, path]);
 
   return (
     <View style={styles.main}>
-      <Image
-        source={require("../assets/images/splash.png")}
-        resizeMode="contain"
-        style={styles.container}
-      />
+      <Animation />
     </View>
   );
 }

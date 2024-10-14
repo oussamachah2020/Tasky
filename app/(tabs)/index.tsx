@@ -1,70 +1,141 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import Statistics from "@/components/dashboard/statistics";
+import Summary from "@/components/dashboard/summary";
+import { fontFamily } from "@/constants/typography";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, View, Text, Platform } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View
+      style={{
+        paddingHorizontal: 10,
+      }}
+    >
+      <Text style={styles.title}>Dashboard</Text>
+      <Summary />
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor: "rgba(0,0,0,0.1)",
+          marginVertical: 15,
+        }}
+      />
+      <Statistics />
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor: "rgba(0,0,0,0.1)",
+          marginVertical: 15,
+        }}
+      />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={styles.card}>
+          <Text
+            style={{
+              fontWeight: "600",
+              fontFamily: fontFamily.Regular,
+            }}
+          >
+            Total working hours
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              gap: 7,
+              alignItems: "center",
+              marginTop: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: fontFamily.semiBold,
+              }}
+            >
+              5:25:06
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 3,
+                alignItems: "center",
+                backgroundColor: "#66DA98",
+                width: 60,
+                padding: 5,
+                borderRadius: 10,
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons name="arrow-up" size={16} />
+              <Text>34%</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.card}>
+          <Text
+            style={{
+              fontWeight: "600",
+              fontFamily: fontFamily.Regular,
+            }}
+          >
+            Total task activity
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              gap: 7,
+              alignItems: "center",
+              marginTop: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: fontFamily.semiBold,
+              }}
+            >
+              125 Tasks
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 3,
+                alignItems: "center",
+                backgroundColor: "#688EFF",
+                width: 60,
+                padding: 5,
+                borderRadius: 10,
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons name="arrow-down" size={16} />
+              <Text>50%</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  title: {
+    fontSize: 18,
+    fontWeight: "500",
+    fontFamily: fontFamily.semiBold,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  card: {
+    borderWidth: 1,
+    borderColor: "#000",
+    height: 80,
+    width: 190,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
   },
 });
