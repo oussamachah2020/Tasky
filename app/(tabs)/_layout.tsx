@@ -4,7 +4,7 @@ import React from "react";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Ionicons } from "@expo/vector-icons";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -27,10 +27,20 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "home" : "home-outline"}
-              size={32}
-              color={color}
+              name={focused ? "grid" : "grid-outline"}
+              size={25}
+              color={focused ? "#A085FF" : color}
             />
+          ),
+          tabBarLabel: ({ focused, color }) => (
+            <Text
+              style={{
+                color: focused ? "#A085FF" : color,
+                fontSize: 12,
+              }}
+            >
+              Dashboard
+            </Text>
           ),
         }}
       />
@@ -41,9 +51,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "list-sharp" : "list-outline"}
-              size={32}
-              color={color}
+              size={25}
+              color={focused ? "#A085FF" : color}
             />
+          ),
+          tabBarLabel: ({ focused, color }) => (
+            <Text
+              style={{
+                color: focused ? "#A085FF" : color,
+                fontSize: 12,
+              }}
+            >
+              Tasks
+            </Text>
           ),
         }}
       />
@@ -54,9 +74,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "person-circle" : "person-circle-outline"}
-              size={32}
-              color={color}
+              size={28}
+              color={focused ? "#A085FF" : color}
             />
+          ),
+          tabBarLabel: ({ focused, color }) => (
+            <Text
+              style={{
+                color: focused ? "#A085FF" : color,
+                fontSize: 12,
+              }}
+            >
+              Profile
+            </Text>
           ),
         }}
       />

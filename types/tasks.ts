@@ -7,7 +7,7 @@ export enum PRIORITIES {
 export enum CATEGORIES {
   COMPLETE = "COMPLETE",
   TODO = "TODO",
-  IN_REVIEW = "IN REVIEW",
+  IN_PROGRESS = "IN PROGRESS",
   ON_HOLD = "ON HOLD",
 }
 
@@ -17,4 +17,5 @@ export interface Task {
   priority: PRIORITIES;
   category: CATEGORIES;
   date: string;
+  tag: string;
 }

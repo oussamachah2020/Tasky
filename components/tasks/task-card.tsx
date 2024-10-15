@@ -39,7 +39,7 @@ const TaskCard = ({ task }: Props) => {
         paddingVertical: 12,
         borderRadius: 12,
       }}
-      onPress={() => router.push(`/task/${task.id}`)}
+      onPress={() => router.replace(`/task/${task.id}`)}
     >
       <View
         style={{
@@ -74,6 +74,16 @@ const TaskCard = ({ task }: Props) => {
           }}
         >
           <Text>{formattedPriorities.label}</Text>
+        </View>
+        <View
+          style={{
+            borderRadius: 50,
+            backgroundColor: "#DA82F8",
+            paddingHorizontal: 15,
+            paddingVertical: 6,
+          }}
+        >
+          <Text>{task.tag}</Text>
         </View>
       </View>
       <View
