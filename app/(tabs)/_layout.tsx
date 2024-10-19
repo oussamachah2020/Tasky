@@ -68,6 +68,29 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="schedules"
+        options={{
+          title: "Shedules",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "calendar" : "calendar-outline"}
+              size={25}
+              color={focused ? "#A085FF" : color}
+            />
+          ),
+          tabBarLabel: ({ focused, color }) => (
+            <Text
+              style={{
+                color: focused ? "#A085FF" : color,
+                fontSize: 12,
+              }}
+            >
+              Schedules
+            </Text>
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
